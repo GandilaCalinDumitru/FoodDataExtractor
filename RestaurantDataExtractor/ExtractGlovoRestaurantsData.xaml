@@ -1,0 +1,276 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ExtractGlovoData" this:ExtractGlovoData.in_url="https://glovoapp.com/ro/ro/cluj-napoca/restaurante_1/" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_url" Type="InArgument(x:String)" />
+    <x:Property Name="in_oras" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1339,2580</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ExtractGlovoData_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="27">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ExtractGlovoData" sap:VirtualizedContainerService.HintSize="708,2515" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="restaurants" />
+      <Variable x:TypeArguments="ui:UiElement" Name="nextPageButton" />
+      <Variable x:TypeArguments="x:Boolean" Default="True" Name="thereAreMorePages" />
+      <Variable x:TypeArguments="x:Int32" Default="100000" Name="index" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message - ExtractGlovoData" sap:VirtualizedContainerService.HintSize="666,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Start ExtractGlovoData&quot;]" />
+    <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="666,2292" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[in_url]">
+      <ui:OpenBrowser.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="632,2191" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element - Next page button" FoundElement="[nextPageButton]" sap:VirtualizedContainerService.HintSize="590,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1">
+              <ui:WaitUiElementAppear.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="427a29a4-030a-40fb-93af-8debb75dca10" InformativeScreenshot="dbb5bc0ab4d3e8072da8b5ff12b2683b" Selector="&lt;webctrl class='next-page*' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:WaitUiElementAppear.Target>
+            </ui:WaitUiElementAppear>
+            <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[thereAreMorePages]" DisplayName="While - All pages were scraped" sap:VirtualizedContainerService.HintSize="590,1891" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+              <ui:InterruptibleWhile.Body>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="554,1726" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:FindChildren Children="[restaurants]" DisplayName="Find Children - Extract Glovo restaurants" Filter="&lt;webctrl class='collection-item hover-effect full-width--mobile' idx='*' /&gt;" sap:VirtualizedContainerService.HintSize="512,106" sap2010:WorkflowViewState.IdRef="FindChildren_3" Scope="FIND_DESCENDANTS">
+                    <ui:FindChildren.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0aec1cbe-cbae-4d67-aea9-a93cfc449163" InformativeScreenshot="9caed5e221bca5b9720dc24d23d48b4e" Selector="&lt;html app='chrome.exe' url='https://glovoapp.com/*' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:FindChildren.Target>
+                  </ui:FindChildren>
+                  <ui:ForEach x:TypeArguments="ui:UiElement" CurrentIndex="{x:Null}" DisplayName="For Each - Found restaurant" sap:VirtualizedContainerService.HintSize="512,868" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[restaurants]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="ui:UiElement">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:UiElement" Name="currentRestaurant" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Extract restaurants data" sap:VirtualizedContainerService.HintSize="476,745" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="restaurantName" />
+                            <Variable x:TypeArguments="x:String" Name="restaurantLink" />
+                            <Variable x:TypeArguments="x:Double" Name="restaurantRate" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Assign - Get restaurants data" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[restaurantName]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(currentRestaurant.Get("aaname").ToString,"\w+(\s\w+)*(?=\s{2})").Value.Trim]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Assign - Get restaurants data" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[restaurantLink]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">["https://glovoapp.com" + currentRestaurant.Get("href").ToString]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,291" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                            <TryCatch.Try>
+                              <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Double">[restaurantRate]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Double">[Math.Round(Cdbl(System.Text.RegularExpressions.Regex.Match(currentRestaurant.Get("innertext").ToString, "(\d+)(?=%)").Value) * 0.05 , 1)]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,129" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Double">[restaurantRate]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Double">0</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                          <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" FolderPath="FoodSeeker" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" ItemInformationCollection="[New Dictionary(Of String, Object) from {{&quot;RestaurantName&quot;, restaurantName},{&quot;RestaurantLink&quot;, restaurantLink},{&quot;Provider&quot;, &quot;Glovo&quot;},{&quot;RestaurantRate&quot;, restaurantRate},{&quot;City&quot;,in_oras}}]" Priority="Normal" QueueType="FoodSeeker">
+                            <ui:AddQueueItem.ItemInformation>
+                              <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                            </ui:AddQueueItem.ItemInformation>
+                          </ui:AddQueueItem>
+                          <Assign sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[index]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">[index+1]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                  </ui:ForEach>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" ContinueOnError="True" sap:VirtualizedContainerService.HintSize="512,86" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9e4dcb41-6992-434b-aaf6-d17be265678f" Selector="&lt;webctrl class='next-page*' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
+                  <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="512,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                  <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element - Next page button" FoundElement="[nextPageButton]" sap:VirtualizedContainerService.HintSize="512,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_4">
+                    <ui:WaitUiElementAppear.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="427a29a4-030a-40fb-93af-8debb75dca10" InformativeScreenshot="dbb5bc0ab4d3e8072da8b5ff12b2683b" Selector="&lt;webctrl class='next-page*' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:WaitUiElementAppear.Target>
+                  </ui:WaitUiElementAppear>
+                  <If Condition="[nextPageButton.Get(&quot;class&quot;).ToString.Trim.EndsWith(&quot;disabled&quot;)]" sap:VirtualizedContainerService.HintSize="512,246" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If.Then>
+                      <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Boolean">[thereAreMorePages]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ui:InterruptibleWhile.Body>
+            </ui:InterruptibleWhile>
+            <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="590,22" sap2010:WorkflowViewState.IdRef="CloseTab_1" />
+          </Sequence>
+        </ActivityAction>
+      </ui:OpenBrowser.Body>
+    </ui:OpenBrowser>
+  </Sequence>
+</Activity>
